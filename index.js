@@ -1,9 +1,12 @@
 require('dotenv').config()
 
-const { default: makeWASocket, useMultiFileAuthState, DisconnectReason } =
-    require('@whiskeysockets/baileys')
+const {
+    default: makeWASocket,
+    useMultiFileAuthState,
+    DisconnectReason
+} = require('@whiskeysockets/baileys')
 
-const P = require('pino')
+const Pino = require('pino')
 const qrcode = require('qrcode-terminal')
 
 const getText = require('./utils/getText')
@@ -14,7 +17,7 @@ async function startBot() {
 
     const sock = makeWASocket({
         auth: state,
-        logger: P({ level: 'silent' }),
+        logger: Pino({ level: 'silent' }),
         browser: ['Salmotide Bot', 'Chrome', '1.0.0']
     })
 
@@ -33,7 +36,7 @@ async function startBot() {
         }
     })
 
-    // 📩 MESSAGE HANDLER (SATU-SATUNYA)
+    // 📩 MESSAGE HANDLER
     sock.ev.on('messages.upsert', async ({ messages }) => {
         const msg = messages[0]
         if (!msg?.message) return

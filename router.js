@@ -1,5 +1,5 @@
 const config = require('./config')
-const prefix = config.bot.prefix
+const prefix = config.bot.prefix || '.'
 
 const commands = {
     menu: require('./handlers/menu'),
@@ -39,7 +39,7 @@ module.exports = async (sock, msg, text) => {
     if (!handler) return
 
     try {
-        await handler(sock, msg, text, args)
+        await handler(sock, msg, args) // ✅ INI YANG BENAR
     } catch (err) {
         console.error(`Error command ${usedPrefix}${command}`, err)
     }
