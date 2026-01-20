@@ -1,3 +1,6 @@
+const config = require('./config')
+const prefix = config.bot.prefix
+
 const commands = {
     menu: require('./handlers/menu'),
     sticker: require('./handlers/sticker'),
@@ -17,22 +20,27 @@ const commands = {
     leaderboard: require('./gacha/handlers/leaderboard')
 }
 
-// =============================== ROUTER ===============================
 module.exports = async (sock, msg, text) => {
-    if (!text.startsWith('.')) return
+    if (!text) return
+
+    const prefixes = Array.isArray(prefix) ? prefix : [prefix]
+    const usedPrefix = prefixes.find(p => text.startsWith(p))
+    if (!usedPrefix) return
 
     const args = text
-        .slice(1)
+        .slice(usedPrefix.length)
         .trim()
         .split(/\s+/)
 
-    const command = args.shift().toLowerCase()
+    const command = args.shift()?.toLowerCase()
+    if (!command) return
 
-    if (!commands[command]) return
+    const handler = commands[command]
+    if (!handler) return
 
     try {
-        await commands[command](sock, msg, text, args)
+        await handler(sock, msg, text, args)
     } catch (err) {
-        console.error(`Error command .${command}`, err)
+        console.error(`Error command ${usedPrefix}${command}`, err)
     }
 }

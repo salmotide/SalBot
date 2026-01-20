@@ -9,8 +9,11 @@ const { exec } = require('child_process')
 const TMP = path.join(__dirname, '../temp')
 if (!fs.existsSync(TMP)) fs.mkdirSync(TMP, { recursive: true })
 
-const PACKNAME = 'Salmotide Bot'
-const AUTHOR = 'Salmotide'
+const config = require('../config')
+
+const PACKNAME = config.sticker.packname
+const AUTHOR = config.sticker.author
+
 
 /* =======================
    UTIL

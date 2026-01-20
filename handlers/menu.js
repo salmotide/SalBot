@@ -20,8 +20,6 @@ module.exports = async (sock, msg) => {
 ${banner}
 
 👤 *Mode* : ${isGroup ? '👥 Group Chat' : '👤 Private Chat'}
-⏱️ *Uptime* : ${uptime} menit
-💾 *RAM* : ${ram} MB
 
 ━━━━━━━━━━━━━━━━━━
 🖼️ *STICKER*

@@ -21,6 +21,7 @@ index.js
 npm install
 node index.js
 pm2 start index.js --name <nama> --max-memory-restart 300M
+pm2 start <nama>
 pm2 stop <nama>
 pm2 restart <nama>
 pm2 delete <nama>

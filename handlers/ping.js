@@ -5,10 +5,13 @@ module.exports = async (sock, msg) => {
     const ram = ((os.totalmem() - os.freemem()) / 1024 / 1024).toFixed(0)
 
     await sock.sendMessage(msg.key.remoteJid, {
-        text: `⚙️ *STATUS BOT*
+        text: `
 
-⏱ Uptime: ${uptime} menit
-💾 RAM: ${ram} MB
+Kenapa ping?
+mengetahui status bot agar kamu tidak penasaran apakah botnya online atau tidak.
+━━━━━━
+⚙️ *STATUS BOT*
+🕒 ${uptime} menit uptime
 🟢 Status: Online`
     })
 }
