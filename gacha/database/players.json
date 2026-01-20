@@ -1,0 +1,41 @@
+{
+  "110629935390815@lid": {
+    "id": "110629935390815@lid",
+    "name": "salmotide",
+    "monsters": [
+      1,
+      61,
+      136,
+      106
+    ],
+    "activeMonster": 136,
+    "win": 99,
+    "lose": 0
+  },
+  "29184369922235@lid": {
+    "id": "29184369922235@lid",
+    "name": "yahaha",
+    "monsters": [
+      1
+    ],
+    "activeMonster": 1,
+    "win": 0,
+    "lose": 0
+  },
+  "120225160761503@lid": {
+    "id": "120225160761503@lid",
+    "name": "Sain",
+    "monsters": [],
+    "activeMonster": null,
+    "win": 0,
+    "lose": 0
+  },
+  "78232896446642@lid": {
+    "id": "78232896446642@lid",
+    "name": "fatih",
+    "monsters": [],
+    "activeMonster": null,
+    "win": 0,
+    "lose": 0
+  }
+}

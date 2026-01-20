@@ -1,0 +1,9 @@
+.env
+auth_info/
+temp/
+node_modules/
+/session/
+/session1
+ffmpeg/
+1768202430259-player-script.js
+1768202430267-player-script.js

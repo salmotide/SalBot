@@ -1,0 +1,11 @@
+bot:
+  name: SalBot
+  owner: Salmotide
+  prefix: "."
+
+sticker:
+  packname: "SalBot Sticker"
+  author: "Salmotide"
+
+limit:
+  maxVideoSeconds: 8
