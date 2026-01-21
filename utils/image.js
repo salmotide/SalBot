@@ -1,30 +1,35 @@
 const fs = require('fs')
 const path = require('path')
 const sharp = require('sharp')
-const { exec } = require('child_process')
+const {exec} = require('child_process')
 
 /* =======================
    KONFIG
 ======================= */
 const TMP = path.join(__dirname, '../temp')
-if (!fs.existsSync(TMP)) fs.mkdirSync(TMP, { recursive: true })
+if (!fs.existsSync(TMP)) 
+    fs.mkdirSync(TMP, {recursive: true})
 
 const config = require('../config')
 
 const PACKNAME = config.sticker.packname
 const AUTHOR = config.sticker.author
 
-
 /* =======================
    UTIL
 ======================= */
 function tmp(ext) {
-    return path.join(TMP, `${Date.now()}-${Math.random().toString(36).slice(2)}.${ext}`)
+    return path.join(
+        TMP,
+        `${Date.now()}-${Math.random().toString(36).slice(2)}.${ext}`
+    )
 }
 
 function run(cmd) {
     return new Promise((resolve, reject) => {
-        exec(cmd, { maxBuffer: 50 * 1024 * 1024 }, (err, stdout, stderr) => {
+        exec(cmd, {
+            maxBuffer: 50 * 1024 * 1024
+        }, (err, stdout, stderr) => {
             if (err) {
                 console.error('FFMPEG ERROR:\n', stderr)
                 return reject(err)
@@ -40,15 +45,17 @@ function run(cmd) {
    - Tidak dipaksa kotak
 ======================= */
 async function imageToSticker(buffer) {
-    return sharp(buffer, { limitInputPixels: false })
+    return sharp(buffer, {limitInputPixels: false})
         .resize(512, 512, {
-            fit: 'cover',        // 🔥 PENTING
-            position: 'centre'   // crop tengah
+            fit: 'contain',
+            background: {
+                r: 0,
+                g: 0,
+                b: 0,
+                alpha: 0
+            } // transparan
         })
-        .webp({
-            quality: 70,
-            effort: 3
-        })
+        .webp({quality: 70, effort: 3})
         .toBuffer()
 }
 
@@ -78,8 +85,10 @@ async function videoToSticker(buffer) {
 
     } finally {
         // cleanup aman
-        if (fs.existsSync(input)) fs.unlinkSync(input)
-        if (fs.existsSync(output)) fs.unlinkSync(output)
+        if (fs.existsSync(input)) 
+            fs.unlinkSync(input)
+        if (fs.existsSync(output)) 
+            fs.unlinkSync(output)
     }
 }
 
