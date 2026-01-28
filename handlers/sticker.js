@@ -22,14 +22,14 @@ module.exports = async (sock, msg) => {
             })
         }
 
-        // =======================
-        // COOLDOWN (ANTI SPAM)
-        // =======================
-        if (cooldown(sender)) {
-            return sock.sendMessage(jid, {
-                text: '⏳ Tunggu sebentar...'
-            })
-        }
+        // // =======================
+        // // COOLDOWN (ANTI SPAM)
+        // // =======================
+        // if (cooldown(sender)) {
+        //     return sock.sendMessage(jid, {
+        //         text: '⏳ Tunggu sebentar...'
+        //     })
+        // }
 
         // =======================
         // FOTO
