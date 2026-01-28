@@ -25,4 +25,5 @@ pm2 start <nama>
 pm2 stop <nama>
 pm2 restart <nama>
 pm2 delete <nama>
+pm2 list
 ```
