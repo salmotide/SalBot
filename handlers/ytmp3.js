@@ -2,7 +2,7 @@ const fs = require('fs')
 const downloadMP3 = require('../utils/downloader')
 const cooldown = require('../utils/cooldown')
 
-module.exports = async (sock, msg, text) => {
+module.exports = async (sock, msg, args) => {
     const jid = msg.key.remoteJid
 
     const cd = cooldown(jid, 60)
@@ -12,7 +12,7 @@ module.exports = async (sock, msg, text) => {
         })
     }
 
-    const url = text.split(' ')[1]
+    const url = Array.isArray(args) ? args[0] : undefined
     if (!url) {
         return sock.sendMessage(jid, {
             text: '❌ Contoh:\n.ytmp3 https://youtube.com/...'
